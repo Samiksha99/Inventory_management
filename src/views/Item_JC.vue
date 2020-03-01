@@ -3,45 +3,18 @@
     <v-row dense>
         <v-col
           class="flex-wrap"
-          v-for="item in items"
-          v-bind:key="item.itemId"
+          v-for="name in names"
+          v-bind:key="name.id"
           cols="12"
         >
-  <v-card
+  <router-link :to="name.id"><v-card
     outlined
     color="#bfff00"
   >
     <v-list-item three-line>
-        <v-row>
-            <v-col
-                cols="9">
-            <div class="font-weight-black">{{ item.Name }}</div>
-            </v-col>
-            <v-col
-                cols="1"
-                >
-                <v-card
-                    color="#ffffff"
-                    >
-            <v-list-item-subtitle>Total = {{ item.Total }}</v-list-item-subtitle>
-            </v-card>
-            </v-col>
-            <v-col
-                cols="1"
-                >
-                <v-card
-                color="#ff0000">
-            <v-list-item-subtitle>Damaged = {{ item.Damaged }}</v-list-item-subtitle>
-                </v-card>
-            </v-col>
-            <v-col
-                cols="1"
-                >
-            <v-list-item-subtitle>Working = {{ item.Working }}</v-list-item-subtitle>
-            </v-col>
-        </v-row>
+        <v-list-item-title>{{ name.name }}</v-list-item-title>
     </v-list-item>
-  </v-card>
+  </v-card></router-link>
   </v-col
         >
       </v-row>
@@ -52,13 +25,14 @@ import { db } from '../main.js'
 export default {
     data(){
         return{
+            show: false,
             itemId: null,
             name: null,
             damaged: 0,
             total: 0,
             working: 0,
-            items: [],
-            factor: 1
+            names: [],
+            factor: 1,
         }
     },
     mounted(){
@@ -68,26 +42,18 @@ export default {
         async getItems()
         {
             /* eslint-disable */
-            var itemsref = db.ref('Modules_IC');
-            let item = [];
+            var itemsref = db.ref('data');
+            let name = [];
             itemsref.on('value', function(snapshot){
                 for(const i in snapshot.val())
                 {
-                    var name = snapshot.val()[i].Particulars;
-                    var total = snapshot.val()[i].QUANTITY;
-                    var damaged = snapshot.val()[i].damaged;
-                    var working = snapshot.val()[i].Working;
-                    var id = i;
-                    item.push({
-                        "itemId": id,
-                        "Name": name,
-                        "Total": total,
-                        "Damaged": damaged,
-                        "Working": working
-                    });
+                    name.push({
+                        id: i,
+                        name: snapshot.val()[i].name}
+                        );
                 }
             });
-            this.items = item;
+            this.names = name;
         },
         /*writeUserData() {
         db.ref(this.itemId).set({

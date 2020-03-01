@@ -18,21 +18,14 @@
             <div class="font-weight-black">{{ item.Name }}</div>
             </v-col>
             <v-col
-                cols="2"
+                cols="3"
                 >
                 <v-card
                     color="#ffffff"
                     height="40px"
                     >
-            <v-list-item-subtitle>Items available for issuing = {{ item.Working }}</v-list-item-subtitle>
+            <v-list-item-subtitle>Total = {{ item.Total }}</v-list-item-subtitle>
             </v-card>
-            </v-col>
-            <v-col
-                cols="1"
-                >
-                <v-btn>
-                    Issue
-                </v-btn>
             </v-col>
         </v-row>
     </v-list-item>
@@ -63,18 +56,18 @@ export default {
         async getItems()
         {
             /* eslint-disable */
-            var itemsref = db.ref('Modules_IC');
+            var itemsref = db.ref(`data/${this.$route.params.id}`);
             let item = [];
             itemsref.on('value', function(snapshot){
                 for(const i in snapshot.val())
                 {
-                    var name = snapshot.val()[i].Particulars;
-                    var working = snapshot.val()[i].Working;
+                    var name = snapshot.val()[i].Name;
+                    var total = snapshot.val()[i].Quantity;
                     var id = i;
                     item.push({
                         "itemId": id,
                         "Name": name,
-                        "Working": working
+                        "Total": total,
                     });
                 }
             });

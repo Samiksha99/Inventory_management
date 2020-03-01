@@ -27,7 +27,12 @@ const routes = [
     path: '/ItemMembers',
     name: 'Item List For Members',
     component: () => import('../views/Item_members.vue')
-  }
+  },
+  {
+    path: '/:id',
+    name: 'Specific Items list',
+    component: () => import('../views/itemsJC.vue')
+  },
 ]
 
 const router = new VueRouter({
