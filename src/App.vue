@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <v-app-bar app>
-    <!-- -->
-    <router-link to='/ItemMembers'><v-btn text large color="primary">Items list for members</v-btn></router-link>
-    <v-spacer></v-spacer>
-    <router-link to='/ItemJC'><v-btn text large color="primary">Items list for JC/C</v-btn></router-link>
-  </v-app-bar>
   <v-content>
     <router-view/>
   </v-content>
