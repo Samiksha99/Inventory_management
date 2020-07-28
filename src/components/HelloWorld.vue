@@ -28,6 +28,7 @@
       show: true
     }),
     beforeMount() {
+      console.log(this.$store.state.name)
       this.getUser()
     },
     methods: {
@@ -41,6 +42,10 @@
         console.log(this.user)
         if(this.user)
         {
+          var User = this.user
+          console.log(User)
+          this.$store.commit('setUser', User)
+          console.log(this.$store.state.user)
           this.message = "Welcome Admin!"
           this.show = false
           setTimeout(() => {
