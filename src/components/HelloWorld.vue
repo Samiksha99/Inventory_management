@@ -41,6 +41,7 @@
         {
           var User = this.user
           this.$store.commit('setUser', User)
+          console.log(this.$store.state.user)
           this.message = "Welcome Admin!"
           this.show = false
           setTimeout(() => {
