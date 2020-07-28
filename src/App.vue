@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+  <v-app-bar
+    color="deep-blue"
+    dark
+  >
+    <v-toolbar-title>Item's Present</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-toolbar-title> <p style="font-size: 15px"> Hashir Niazi </p> </v-toolbar-title>
+  </v-app-bar>    
   <v-content>
     <router-view/>
   </v-content>
