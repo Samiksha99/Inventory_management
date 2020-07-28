@@ -10,6 +10,9 @@
             Sign In
           </v-btn>
         </div>
+        <div v-else>
+          <h6>Redirecting you to Item's section shortly...</h6>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -36,9 +39,13 @@
         console.log(snapshot)
         this.user = snapshot.user
         console.log(this.user)
-        if(this.user.displayName)
+        if(this.user)
         {
-          this.$router.push({name: 'JC'})
+          this.message = "Welcome Admin!"
+          this.show = false
+          setTimeout(() => {
+            this.$router.push({name: 'JC'})
+          }, 4000);
         }
       }
     }
