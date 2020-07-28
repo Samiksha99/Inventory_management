@@ -7,7 +7,7 @@
           v-bind:key="name.id"
           cols="12"
         >
-  <router-link :to="name.id"><v-card
+  <router-link :to="name.id" style="text-decoration: none"><v-card
     outlined
     color="#bfff00"
   >
