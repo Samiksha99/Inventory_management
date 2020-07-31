@@ -1,24 +1,21 @@
 <template>
     <div>
-        <h1 class="border-bottom"> Hello! </h1>
-    <v-row dense>
-        <v-col
-          class="flex-wrap"
-          v-for="name in names"
-          v-bind:key="name.id"
-          cols="12"
-        >
-  <router-link :to="redirect(name.id)" style="text-decoration: none"><v-card
-    outlined
-    color="#bfff00"
-  >
-    <v-list-item three-line>
-        <v-list-item-title>{{ name.name }}</v-list-item-title>
-    </v-list-item>
-  </v-card></router-link>
-  </v-col
-        >
-      </v-row>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div v-for="name in names" :key="name.id">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="display: flex; align-items: left">{{ name.name }}</h5>
+                            <div style="align-items: center"> 
+                                <router-link :to="redirect(name.id)" style="text-decoration: none; color: white; align-items: right"><a class="btn btn-primary">Book from here</a></router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
