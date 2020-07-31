@@ -1,16 +1,14 @@
 <template>
     <div>
-    <v-row dense>
-        <v-col
-          class="flex-wrap"
-          v-for="item in items"
-          v-bind:key="item.itemId"
-          cols="12"
-        >
-    <singleItem :item="item" />
-  </v-col
-        >
-      </v-row>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div v-for="item in items" :key="item.itemId">
+                    <singleItem :item="item" :type="$route.params.type"/>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
