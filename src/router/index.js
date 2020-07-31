@@ -29,7 +29,12 @@ const routes = [
     component: () => import('../views/Item_members.vue')
   },
   {
-    path: '/:id',
+    path: '/ItemJC/:type',
+    name: 'Specific Items list',
+    component: () => import('../views/itemsJC.vue')
+  },
+  {
+    path: '/ItemJC/:type/:id',
     name: 'Specific Items list',
     component: () => import('../views/itemsJC.vue')
   },

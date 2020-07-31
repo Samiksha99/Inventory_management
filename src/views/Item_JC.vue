@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1 class="border-bottom"> Hello! </h1>
     <v-row dense>
         <v-col
           class="flex-wrap"
@@ -7,7 +8,7 @@
           v-bind:key="name.id"
           cols="12"
         >
-  <router-link :to="name.id" style="text-decoration: none"><v-card
+  <router-link :to="redirect(name.id)" style="text-decoration: none"><v-card
     outlined
     color="#bfff00"
   >
@@ -55,6 +56,10 @@ export default {
             });
             this.names = name;
         },
+        redirect(id)
+        {
+            return `ItemJC/${id}`
+        }
         /*writeUserData() {
         db.ref(this.itemId).set({
             name: this.name,

@@ -38,7 +38,7 @@ export default {
         async getItems()
         {
             /* eslint-disable */
-            var itemsref = db.ref(`data/${this.$route.params.id}`);
+            var itemsref = db.ref(`data/${this.$route.params.type}`);
             let item = [];
             itemsref.on('value', function(snapshot){
                 for(const i in snapshot.val())
