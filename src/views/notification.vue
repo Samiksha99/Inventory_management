@@ -1,11 +1,19 @@
 <template>
-  <h1 class="border-bottom">Notifications</h1>
-
-</template>
+<div>
+    <h1 class="border-bottom">Notifications</h1>
+    <div v-for="notification in notifications" :key="notification.id">
+      <Single />
+    </div>
+</div>
+</template> 
 
 <script>
+import Single from '../components/singleNotification'  
 import { db } from '../main'
 export default {
+  components: {
+    Single
+  },
   data: () => ({
     notifications: []
   }),
