@@ -1,9 +1,10 @@
 <template>
 <div>
     <h1 class="border-bottom">Notifications</h1>
-    <div v-for="notification in notifications" :key="notification.id">
+    <div v-for="notification in newNotifications" :key="notification.id">
       <Single :notification="notification"/>
     </div>
+    <v-btn @click="newNotifications = allNotifications">Show All</v-btn>
 </div>
 </template> 
 
@@ -15,7 +16,8 @@ export default {
     Single
   },
   data: () => ({
-    notifications: []
+    newNotifications: [],
+    allNotifications:[]
   }),
   mounted() {
     this.getItems()
@@ -40,7 +42,8 @@ export default {
       })
       /* `Notification for :- ${snapshot.val()[i].Type.charAt(0).toUpperCase() + snapshot.val()[i].Type.slice(1)}` */
       console.log(notifications)
-      this.notifications = notifications.reverse()
+      this.newNotifications = notifications.slice(-5).slice(0, 5).reverse()
+      this.allNotifications = notifications.reverse()
 
     }
   }
