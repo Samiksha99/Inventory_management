@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="border-bottom">Admin Section</h1>
+        <h1 class="border-bottom m-4">Admin Section</h1>
         <div class="row">
             <div class="col-2">
             </div>
