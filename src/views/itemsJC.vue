@@ -2,12 +2,16 @@
     <div>
         <h1 class="border-bottom m-4">Admin Section</h1>
         <div class="row">
-            <div class="col-2">
+            <div class="col-1">
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <div class="m-4" v-for="item in items" :key="item.itemId">
                     <singleItem :item="item" :type="$route.params.type"/>
                 </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+                
             </div>
         </div>
     </div>
