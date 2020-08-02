@@ -41,6 +41,13 @@ export default {
           Name: this.$props.item.Name,
           Quantity: this.value
         })
+        console.log(this.$store.state.user)
+          db.ref('notification').push({
+            Name: this.$store.state.user.displayName,
+            Email: this.$store.state.user.email,
+            Body: `${this.$store.state.user.displayName} changed ${this.$props.item.Name}'s quantity from ${this.$props.item.Total} to ${this.value}.`,
+            Type: 'change'
+          })
         }
         console.log('saved')
         this.show = true
