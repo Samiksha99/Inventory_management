@@ -4,11 +4,13 @@
     <h5 class="card-title">{{ item.Name }}</h5>
     <div v-if="show">
     <p class="card-text">Number of items:- {{ item.Total }}</p>
-      <a @click="show = false"   :class="setButtonAttribute(item.Total)">Go somewhere</a>
+      <a @click="show = false" style="color: white" :class="setButtonAttribute(item.Total)">
+        Edit
+        </a>
     </div>
     <div v-else>
       <input class="form-control" v-model="value" :placeholder="setValue()" />
-      <button @click="insideClickHandler()" :class="setButtonAttribute(item.Total)"> Save </button>
+      <button @click="insideClickHandler()" style="color: white" :class="setButtonAttribute(item.Total)"> Save </button>
       <p class="text-muted"> This will notify other admins that the change is made. </p>
     </div>
   </div>
