@@ -8,7 +8,7 @@
     </div>
     <div v-else>
       <input class="form-control" v-model="value" :placeholder="setValue()" />
-      <button @click="show = true" :class="setButtonAttribute(item.Total)"> Save </button>
+      <button @click="insideClickHandler()" :class="setButtonAttribute(item.Total)"> Save </button>
       <p class="text-muted"> This will notify other admins that the change is made. </p>
     </div>
   </div>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { db } from '../main'
 export default {
     props: ['item'],
     data: () => ({
@@ -30,6 +31,17 @@ export default {
       setValue()
       {
         return parseInt(this.$props.item.Total)
+      },
+      insideClickHandler()
+      {
+        console.log(this.$props.item.id)
+        db.ref(`data/${this.$route.params.type}/${this.$props.item.itemId}`).set({
+          Name: this.$props.item.Name,
+          Quantity: this.value
+        })
+        console.log('saved')
+        this.show = true
+        this.$router.push({name: 'JC'})
       },
       setButtonAttribute(number)
       {

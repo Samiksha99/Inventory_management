@@ -41,7 +41,8 @@ export default {
             let item = [];
             itemsref.on('value', function(snapshot){
                 for(const i in snapshot.val())
-                {
+                {   
+                    console.log(i)
                     var name = snapshot.val()[i].Name;
                     var total = snapshot.val()[i].Quantity;
                     var id = i;
