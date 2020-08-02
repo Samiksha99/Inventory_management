@@ -2,7 +2,7 @@
 <div>
     <h1 class="border-bottom">Notifications</h1>
     <div v-for="notification in notifications" :key="notification.id">
-      <Single />
+      <Single :notification="notification"/>
     </div>
 </div>
 </template> 
