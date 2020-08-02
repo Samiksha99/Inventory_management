@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <v-app-bar app>
-    <!-- -->
-    <router-link to='/ItemMembers'><v-btn text large color="primary">Items list for members</v-btn></router-link>
+  <v-app-bar
+    color="deep-blue"
+    dark
+  >
+    <v-toolbar-title>Item's Present</v-toolbar-title>
     <v-spacer></v-spacer>
-    <router-link to='/ItemJC'><v-btn text large color="primary">Items list for JC/C</v-btn></router-link>
-  </v-app-bar>
+    <p style="font-size: 15px"> {{$store.state.name}} </p>
+    <img :src="$store.state.image" aspect-ratio="1:1" contain height="100%" style="border-radius: 50%" />
+  </v-app-bar>    
   <v-content>
     <router-view/>
   </v-content>

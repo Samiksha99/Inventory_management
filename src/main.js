@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify';
 import router from './router'
 import firebase from 'firebase/app'
 import 'firebase/database'
+import 'firebase/auth'
 import store from './store'
 
 Vue.config.productionTip = false
@@ -19,6 +20,8 @@ firebase.initializeApp({
 });
 
 export const db = firebase.database();
+export var provider = new firebase.auth.GoogleAuthProvider();
+export const authenticate = firebase.auth();
 
 new Vue({
   vuetify,

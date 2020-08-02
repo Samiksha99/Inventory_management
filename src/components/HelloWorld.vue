@@ -3,68 +3,52 @@
     <v-row class="text-center">
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Inventory Management App
+          {{message}}
         </h1>
+        <div v-if="show">
+          <v-btn @click="authentication">
+            Sign In
+          </v-btn>
+        </div>
+        <div v-else>
+          <h6>Redirecting you to Item's section shortly...</h6>
+        </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+  import { authenticate, provider } from '../main.js'
   export default {
     name: 'HelloWorld',
-
     data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/layout/pre-defined',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
+      user: {},
+      message: "Inventory Management App",
+      show: true
     }),
+    beforeMount() {
+      this.getUser()
+    },
+    methods: {
+      authentication() {
+        authenticate.signInWithRedirect(provider);
+      },
+      async getUser() {
+        var snapshot = await authenticate.getRedirectResult()
+        this.user = snapshot.user
+        if(this.user)
+        {
+          var User = this.user
+          this.$store.commit('setUser', User)
+          console.log(this.$store.state.user)
+          this.message = "Welcome Admin!"
+          this.show = false
+          setTimeout(() => {
+            this.$router.push({name: 'JC'})
+          }, 4000);
+        }
+      }
+    }
   }
 </script>

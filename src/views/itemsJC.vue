@@ -1,43 +1,30 @@
 <template>
-    <div>
-    <v-row dense>
-        <v-col
-          class="flex-wrap"
-          v-for="item in items"
-          v-bind:key="item.itemId"
-          cols="12"
-        >
-  <v-card
-    outlined
-    color="#bfff00"
-  >
-    <v-list-item three-line>
-        <v-row>
-            <v-col
-                cols="9">
-            <div class="font-weight-black">{{ item.Name }}</div>
-            </v-col>
-            <v-col
-                cols="3"
-                >
-                <v-card
-                    color="#ffffff"
-                    height="40px"
-                    >
-            <v-list-item-subtitle>Total = {{ item.Total }}</v-list-item-subtitle>
-            </v-card>
-            </v-col>
-        </v-row>
-    </v-list-item>
-  </v-card>
-  </v-col
-        >
-      </v-row>
+    <div class="container">
+        <h1 class="border-bottom m-4">Admin Section</h1>
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-6">
+                <div class="m-4" v-for="item in items" :key="item.itemId">
+                    <singleItem :item="item" :type="$route.params.type"/>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+                <Notif />
+            </div>
+        </div>
     </div>
 </template>
 <script>
+import Notif from './notification'
 import { db } from '../main.js'
+import singleItem from '../components/singleItem'
 export default {
+    components: {
+        singleItem,
+        Notif
+    },
     data(){
         return{
             itemId: null,
@@ -56,11 +43,12 @@ export default {
         async getItems()
         {
             /* eslint-disable */
-            var itemsref = db.ref(`data/${this.$route.params.id}`);
+            var itemsref = db.ref(`data/${this.$route.params.type}`);
             let item = [];
             itemsref.on('value', function(snapshot){
                 for(const i in snapshot.val())
-                {
+                {   
+                    console.log(i)
                     var name = snapshot.val()[i].Name;
                     var total = snapshot.val()[i].Quantity;
                     var id = i;

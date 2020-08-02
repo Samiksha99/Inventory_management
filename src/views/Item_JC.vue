@@ -1,28 +1,35 @@
 <template>
-    <div>
-    <v-row dense>
-        <v-col
-          class="flex-wrap"
-          v-for="name in names"
-          v-bind:key="name.id"
-          cols="12"
-        >
-  <router-link :to="name.id"><v-card
-    outlined
-    color="#bfff00"
-  >
-    <v-list-item three-line>
-        <v-list-item-title>{{ name.name }}</v-list-item-title>
-    </v-list-item>
-  </v-card></router-link>
-  </v-col
-        >
-      </v-row>
+    <div class="container">
+        <h1 class="border-bottom m-4">Admin's Section</h1>
+        <div class="row">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-6">
+                <div class="m-4" v-for="name in names" :key="name.id">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="display: flex; align-items: left">{{ name.name }}</h5>
+                            <div style="align-items: center"> 
+                                <router-link :to="redirect(name.id)" style="text-decoration: none; color: white; align-items: right"><a class="btn btn-primary">Book from here</a></router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-4">
+                <Notif />          
+            </div>
+        </div>
     </div>
 </template>
 <script>
+import Notif from './notification'
 import { db } from '../main.js'
 export default {
+    components: {
+        Notif
+    },
     data(){
         return{
             show: false,
@@ -55,6 +62,10 @@ export default {
             });
             this.names = name;
         },
+        redirect(id)
+        {
+            return `ItemJC/${id}`
+        }
         /*writeUserData() {
         db.ref(this.itemId).set({
             name: this.name,
