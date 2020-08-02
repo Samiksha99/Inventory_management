@@ -1,6 +1,6 @@
 <template>
   <div :class="getCardStyle(notification.type)" style="width: 100%">
-    <div class="card-header">{{ notification.type }}</div>
+    <div class="card-header">{{ getCardHeader(notification.type) }}</div>
     <div class="card-body">
       <p class="card-text">{{ notification.body }}</p>
     </div>
@@ -34,6 +34,10 @@ export default {
             {
                 return "card text-white bg-danger mb-3"
             }
+        },
+        getCardHeader(type)
+        {
+            return `Notification for :- ${type.charAt(0).toUpperCase() + type.slice(1)}`
         }
     }
 } 

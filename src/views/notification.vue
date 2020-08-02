@@ -34,12 +34,14 @@ export default {
             body: snapshot.val()[i].Body,
             email: snapshot.val()[i].Email,
             name: snapshot.val()[i].Name,
-            type: snapshot.val()[i].Type
+            type: snapshot.val()[i].Type,
           })
         }
       })
+      /* `Notification for :- ${snapshot.val()[i].Type.charAt(0).toUpperCase() + snapshot.val()[i].Type.slice(1)}` */
       console.log(notifications)
-      this.notifications = notifications
+      this.notifications = notifications.reverse()
+
     }
   }
 }
