@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1 class="border-bottom m-4">Admin's Section</h1>
         <div class="row">
             <div class="col-lg-1">
@@ -18,14 +18,18 @@
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-4">
-                
+                <Notif />          
             </div>
         </div>
     </div>
 </template>
 <script>
+import Notif from './notification'
 import { db } from '../main.js'
 export default {
+    components: {
+        Notif
+    },
     data(){
         return{
             show: false,

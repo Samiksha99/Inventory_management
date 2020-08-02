@@ -1,5 +1,5 @@
 <template>
-  <h1>Heellow</h1>
+  <h1 class="border-bottom">Heellow</h1>
 </template>
 
 <script>
