@@ -1,10 +1,11 @@
 <template>
     <div>
+        <h1 class="border-bottom">Admin Section</h1>
         <div class="row">
             <div class="col-2">
             </div>
             <div class="col-8">
-                <div v-for="item in items" :key="item.itemId">
+                <div class="m-4" v-for="item in items" :key="item.itemId">
                     <singleItem :item="item" :type="$route.params.type"/>
                 </div>
             </div>

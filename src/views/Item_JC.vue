@@ -1,10 +1,11 @@
 <template>
     <div>
+        <h1 class="border-bottom">Admin's Section</h1>
         <div class="row">
             <div class="col-2">
             </div>
             <div class="col-8">
-                <div v-for="name in names" :key="name.id">
+                <div class="m-4" v-for="name in names" :key="name.id">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title" style="display: flex; align-items: left">{{ name.name }}</h5>
