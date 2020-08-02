@@ -7,7 +7,7 @@
       <a @click="show = false"   :class="setButtonAttribute(item.Total)">Go somewhere</a>
     </div>
     <div v-else>
-      <input class="form-control" v-model="value" placeholder="Enter new value" />
+      <input class="form-control" v-model="value" :placeholder="setValue()" />
       <button @click="show = true" :class="setButtonAttribute(item.Total)"> Save </button>
       <p class="text-muted"> This will notify other admins that the change is made. </p>
     </div>
@@ -19,7 +19,7 @@
 export default {
     props: ['item'],
     data: () => ({
-      value: 0,
+      value: "",
       absolute: true,
       show: true
     }),
@@ -27,6 +27,10 @@ export default {
       console.log("Came Here")
     },
     methods: {
+      setValue()
+      {
+        return parseInt(this.$props.item.Total)
+      },
       setButtonAttribute(number)
       {
         if(number>=0&&number<=4)
