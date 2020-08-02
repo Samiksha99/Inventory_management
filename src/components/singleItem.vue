@@ -35,10 +35,13 @@ export default {
       insideClickHandler()
       {
         console.log(this.$props.item.id)
-        db.ref(`data/${this.$route.params.type}/${this.$props.item.itemId}`).set({
+        if(this.value)
+        {
+          db.ref(`data/${this.$route.params.type}/${this.$props.item.itemId}`).set({
           Name: this.$props.item.Name,
           Quantity: this.value
         })
+        }
         console.log('saved')
         this.show = true
         this.$router.push({name: 'JC'})
