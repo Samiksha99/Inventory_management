@@ -40,21 +40,16 @@ export default {
         console.log(this.$props.item.id)
         if(this.value)
         {
-          db.ref(`data/${this.$route.params.type}/${this.$props.item.itemId}`).set({
-          Name: this.$props.item.Name,
-          Quantity: this.value
-        })
-        console.log(this.$store.state.user)
           db.ref('notification').push({
             Name: this.$store.state.user.displayName,
             Email: this.$store.state.user.email,
-            Body: `${this.$store.state.user.displayName} changed ${this.$props.item.Name}'s quantity from ${this.$props.item.Total} to ${this.value}.`,
-            Type: 'change'
+            Body: `${this.$store.state.user.displayName} wants to book ${this.value} ${this.$props.item.Name}'s from the inventory.`,
+            Type: 'issue'
           })
         }
         console.log('saved')
         this.show = true
-        this.$router.push({name: 'JC'})
+        this.$router.push({name: 'Members'})
       },
       setButtonAttribute(number)
       {
