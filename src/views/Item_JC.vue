@@ -24,7 +24,7 @@
     </div>
 </template>
 <script>
-import Notif from './notification'
+import Notif from '../components/notification'
 import { db } from '../main.js'
 export default {
     components: {

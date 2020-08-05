@@ -6,7 +6,7 @@
   >
     <v-toolbar-title>Item's Present</v-toolbar-title>
     <v-spacer></v-spacer>
-    <p style="font-size: 15px"> {{$store.state.name}} </p>
+    <p class="m-4" style="font-size: 15px"> {{$store.state.name}} </p>
     <img :src="$store.state.image" aspect-ratio="1:1" contain height="100%" style="border-radius: 50%" />
   </v-app-bar>    
   <v-content>

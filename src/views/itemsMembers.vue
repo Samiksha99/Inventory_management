@@ -1,29 +1,23 @@
 <template>
     <div class="container">
-        <h1 class="border-bottom m-4">Admin Section</h1>
+        <h1 class="border-bottom m-4">Member's Section</h1>
         <div class="row">
-            <div class="col-1">
+            <div class="col-2">
             </div>
-            <div class="col-6">
+            <div class="col-8">
                 <div class="m-4" v-for="item in items" :key="item.itemId">
                     <singleItem :item="item" :type="$route.params.type"/>
                 </div>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-4">
-                <Notif />
             </div>
         </div>
     </div>
 </template>
 <script>
-import Notif from '../components/notification'
 import { db } from '../main.js'
-import singleItem from '../components/singleItem'
+import singleItem from '../components/singleMemberItem'
 export default {
     components: {
-        singleItem,
-        Notif
+        singleItem
     },
     data(){
         return{
