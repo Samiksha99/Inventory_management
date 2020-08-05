@@ -1,45 +1,22 @@
 <template>
-    <div>
-    <v-row dense>
-        <v-col
-          class="flex-wrap"
-          v-for="item in items"
-          v-bind:key="item.itemId"
-          cols="12"
-        >
-  <v-card
-    outlined
-    color="#bfff00"
-  >
-    <v-list-item three-line>
-        <v-row>
-            <v-col
-                cols="9">
-            <div class="font-weight-black">{{ item.Name }}</div>
-            </v-col>
-            <v-col
-                cols="2"
-                >
-                <v-card
-                    color="#ffffff"
-                    height="40px"
-                    >
-            <v-list-item-subtitle>Items available for issuing = {{ item.Working }}</v-list-item-subtitle>
-            </v-card>
-            </v-col>
-            <v-col
-                cols="1"
-                >
-                <v-btn>
-                    Issue
-                </v-btn>
-            </v-col>
-        </v-row>
-    </v-list-item>
-  </v-card>
-  </v-col
-        >
-      </v-row>
+    <div class="container">
+        <h1 class="border-bottom m-4">Member's Section</h1>
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8">
+                <div class="m-4" v-for="name in names" :key="name.id">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="display: flex; align-items: left">{{ name.name }}</h5>
+                            <div style="align-items: center"> 
+                                <router-link :to="redirect(name.id)" style="text-decoration: none; color: white; align-items: right"><a class="btn btn-primary">Book from here</a></router-link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -47,13 +24,14 @@ import { db } from '../main.js'
 export default {
     data(){
         return{
+            show: false,
             itemId: null,
             name: null,
             damaged: 0,
             total: 0,
             working: 0,
-            items: [],
-            factor: 1
+            names: [],
+            factor: 1,
         }
     },
     mounted(){
@@ -63,23 +41,23 @@ export default {
         async getItems()
         {
             /* eslint-disable */
-            var itemsref = db.ref('Modules_IC');
-            let item = [];
+            var itemsref = db.ref('data');
+            let name = [];
             itemsref.on('value', function(snapshot){
                 for(const i in snapshot.val())
                 {
-                    var name = snapshot.val()[i].Particulars;
-                    var working = snapshot.val()[i].Working;
-                    var id = i;
-                    item.push({
-                        "itemId": id,
-                        "Name": name,
-                        "Working": working
-                    });
+                    name.push({
+                        id: i,
+                        name: snapshot.val()[i].name}
+                        );
                 }
             });
-            this.items = item;
+            this.names = name;
         },
+        redirect(id)
+        {
+            return `ItemMember/${id}`
+        }
         /*writeUserData() {
         db.ref(this.itemId).set({
             name: this.name,
