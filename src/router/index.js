@@ -24,6 +24,11 @@ const routes = [
     path: '/ItemJC/:type',
     name: 'Specific Items list',
     component: () => import('../views/itemsJC.vue')
+  },
+  {
+    path: '/ItemMembers/:type',
+    name: 'Members Items list',
+    component: () => import('../views/itemsMembers.vue')
   }
 ]
 
