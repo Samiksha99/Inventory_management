@@ -56,7 +56,7 @@ export default {
         },
         redirect(id)
         {
-            return `ItemMember/${id}`
+            return `ItemMembers/${id}`
         }
         /*writeUserData() {
         db.ref(this.itemId).set({
